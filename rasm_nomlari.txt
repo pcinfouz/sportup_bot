@@ -1,0 +1,29 @@
+Har bir mahsulot rasmini shu nom bilan 'images' papkaga qo'ying (.jpg):
+
+== BUTSILAR ==
+f50_green.jpg   (F50 Shoes Green:Black — tayyor)
+nike_mercurial_superfly_10_11_elite.jpg   <- Nike Mercurial Superfly 10 / 11 Elite
+nike_mercurial_vapor_16_17_elite.jpg   <- Nike Mercurial Vapor 16 / 17 Elite
+nike_phantom_6_elite.jpg   <- Nike Phantom 6 Elite
+nike_tiempo_maestro_legend_10_elite.jpg   <- Nike Tiempo Maestro / Legend 10 Elite
+nike_premier_iii.jpg   <- Nike Premier III
+adidas_predator_elite_ft.jpg   <- Adidas Predator Elite / FT
+adidas_f50_hyperfast_elite.jpg   <- Adidas F50 Hyperfast / Elite
+adidas_copa_pure_4_icon_2.jpg   <- Adidas Copa Pure 4 / Icon 2
+adidas_f50_messi_elite.jpg   <- Adidas F50 Messi Elite
+adidas_copa_mundial.jpg   <- Adidas Copa Mundial
+puma_ultra_nitro_7_ultimate.jpg   <- Puma Ultra Nitro 7 / Ultimate
+puma_future_9_ultimate.jpg   <- Puma Future 9 Ultimate
+puma_king_ultimate.jpg   <- Puma King Ultimate
+mizuno_morelia_neo_v_beta_japan.jpg   <- Mizuno Morelia Neo V Beta Japan
+mizuno_morelia_ii_japan.jpg   <- Mizuno Morelia II Japan
+mizuno_alpha_iii_japan.jpg   <- Mizuno Alpha III Japan
+
+== SARAKANOSHKALAR ==
+nike_mercurial_lite.jpg   <- Nike Mercurial Lite
+nike_charge.jpg   <- Nike Charge
+adidas_tiro_league.jpg   <- Adidas Tiro League
+adidas_predator_league.jpg   <- Adidas Predator League
+puma_ultra_flex.jpg   <- Puma Ultra Flex
+
+Rasm bo'lmasa, kategoriya rasmi (cat_boots.jpg ...) chiqadi.
