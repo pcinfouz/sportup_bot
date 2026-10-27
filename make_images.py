@@ -21,6 +21,67 @@ ITEMS = {
     "swim":     ("Suzish mahsulotlari",  "Suzish uchun jihozlar",                 "Товары для плавания",             ((5, 40, 90), (20, 150, 220))),
 }
 
+def _bez(p0, p1, p2, p3, n=40):
+    pts = []
+    for i in range(n + 1):
+        t = i / n
+        u = 1 - t
+        pts.append((u**3*p0[0] + 3*u*u*t*p1[0] + 3*u*t*t*p2[0] + t**3*p3[0],
+                    u**3*p0[1] + 3*u*u*t*p1[1] + 3*u*t*t*p2[1] + t**3*p3[1]))
+    return pts
+
+
+def _path(start, segs):
+    pts = [start]
+    cur = start
+    for c1, c2, end in segs:
+        pts += _bez(cur, c1, c2, end)[1:]
+        cur = end
+    return pts
+
+
+def draw_boot(img, cx, cy, size):
+    """Dumaloq ichiga butsi belgisi (oq rangda) chizadi."""
+    S = 4  # sifat uchun katta o'lchamda chizib, kichraytiramiz
+    box = size * S
+    layer = Image.new("RGBA", (box, box), (0, 0, 0, 0))
+    d = ImageDraw.Draw(layer)
+    # asl belgi koordinatalari ~ (100..600, 175..500)
+    k = box / 520.0
+    ox, oy = -94, -72
+
+    def T(pts):
+        return [((x + ox) * k, (y + oy) * k) for x, y in pts]
+
+    white = (255, 255, 255, 255)
+    # yuqori qism (qanot + tana)
+    upper = _path((118, 228), [
+        ((112, 185), (190, 175), (268, 205)),
+        ((330, 228), (375, 272), (403, 307)),
+        ((340, 278), (275, 262), (217, 265)),
+        ((330, 275), (500, 345), (590, 435)),
+        ((608, 456), (585, 472), (535, 471)),
+        ((470, 470), (425, 445), (385, 425)),
+        ((290, 385), (205, 335), (150, 302)),
+        ((122, 282), (116, 255), (118, 228)),
+    ])
+    d.polygon(T(upper), fill=white)
+    # taglik (yarim oy)
+    sole = _path((105, 293), [
+        ((160, 322), (290, 392), (385, 426)),
+        ((410, 440), (425, 452), (425, 465)),
+        ((300, 440), (195, 420), (150, 395)),
+        ((112, 370), (96, 330), (105, 293)),
+    ])
+    d.polygon(T(sole), fill=white)
+    # shipovkalar
+    for (x, y, r) in [(160, 408, 17), (236, 428, 17), (340, 452, 16), (424, 472, 17), (520, 489, 17)]:
+        px, py = (x + ox) * k, (y + oy) * k
+        d.ellipse((px - r*k, py - r*k*0.9, px + r*k, py + r*k*1.1), fill=white)
+    layer = layer.resize((size, size), Image.LANCZOS)
+    img.paste(layer, (int(cx - size / 2), int(cy - size / 2)), layer)
+
+
 def gradient(c1, c2):
     img = Image.new("RGB", (W, H))
     px = img.load()
@@ -51,6 +112,7 @@ for key, (title, sub_uz, sub_ru, (c1, c2)) in ITEMS.items():
     d.ellipse((930, 190, 1190, 450), outline=(255, 255, 255, 40), width=4)
     d.ellipse((-120, 500, 260, 880), fill=(255, 255, 255, 18))
     img = Image.alpha_composite(img, ov).convert("RGB")
+    draw_boot(img, 1060, 322, 250)   # dumaloq markazida butsi
     d = ImageDraw.Draw(img)
 
     d.text((80, 70), "SPORTUP", font=ImageFont.truetype(B, 44), fill=(255, 255, 255))
